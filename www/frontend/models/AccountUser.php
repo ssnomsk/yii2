@@ -12,6 +12,7 @@ use Yii;
  * @property integer $id
  * @property string $username
  * @property string $email
+ * @property string $key
 
  */
 class AccountUser extends \yii\db\ActiveRecord

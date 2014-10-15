@@ -20,7 +20,9 @@ class PrivateAccountController extends Controller
 
         $user = Yii::$app->user->getIdentity();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['site/index']);
         }
         else
@@ -44,5 +46,16 @@ class PrivateAccountController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionActivation($key)
+    {
+        $query =AccountUser::find($key);
+        $post = $query
+            ->where(array('key' => $key))
+            ->one();
+        $post['key'] = '';
+        $post->save();
+        return $this->render('activation');
     }
 }

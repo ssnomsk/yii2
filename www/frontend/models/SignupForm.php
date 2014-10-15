@@ -13,6 +13,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $key;
 
     /**
      * @inheritdoc
@@ -48,6 +49,15 @@ class SignupForm extends Model
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
+
+            $key = uniqid();
+            $user->key = $key;
+            $to= $user['email'];
+            $subject = "Активация";
+            $message = 'пройдите по ссылке http://yii2.ru/frontend/web/index.php?r=privateaccount%2Factivation&key='.$key;
+            $headers ="MIME-Version: 1.0\nContent-type: text/html; charset=windows-1251\nFrom: \n";
+            mail($to, $subject, $message, $headers);
+
             $user->save();
             return $user;
         }
