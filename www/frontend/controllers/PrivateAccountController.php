@@ -37,14 +37,15 @@ class PrivateAccountController extends Controller
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
      * @return AccountUser the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     *
      */
     protected function findModel($id)
     {
         if (($model = AccountUser::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            return 'no';
+            //throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 
