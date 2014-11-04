@@ -3,8 +3,6 @@
 namespace frontend\models;
 
 use Yii;
-//use common\models\User;
-//use yii\base\Model;
 
 /**
  * This is the model class for table "country".
